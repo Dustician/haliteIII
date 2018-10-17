@@ -11,7 +11,7 @@ import logging
 # This game object contains the initial game state.
 game = hlt.Game()
 # Respond with your name.
-game.ready("Dustician V3")
+game.ready("Dustician V4")
 
 returnHome = False
 
@@ -43,7 +43,7 @@ while True:
 
     # If you're on the first turn and have enough halite, spawn a ship.
     # Don't spawn a ship if you currently have a ship at port, though.
-    if game.turn_number <= 1 and me.halite_amount >= constants.SHIP_COST and not game_map[me.shipyard].is_occupied:
+    if len(me.get_ships()) == 0 and (me.halite_amount >= constants.SHIP_COST and not game_map[me.shipyard].is_occupied):
         command_queue.append(game.me.shipyard.spawn())
 
     # Send your moves back to the game environment, ending this turn.
